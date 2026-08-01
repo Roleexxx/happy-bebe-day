@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bouquet</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(to top,#fde2e4,#fff8f0);
+}
+
+.scene{
+    position:relative;
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-18px);}
+}
+
+.flower{
+    position:absolute;
+    font-size:70px;
+    animation:bloom 2s ease forwards;
+    transform:scale(0);
+}
+
+@keyframes bloom{
+    0%{
+        transform:scale(0) rotate(-180deg);
+        opacity:0;
+    }
+    100%{
+        transform:scale(1) rotate(0);
+        opacity:1;
+    }
+}
+
+.stem{
+    position:absolute;
+    width:6px;
+    height:170px;
+    background:#2e8b57;
+    border-radius:5px;
+    bottom:-160px;
+}
+
+.ribbon{
+    position:absolute;
+    font-size:45px;
+    bottom:-35px;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.sparkle{
+    position:absolute;
+    color:white;
+    font-size:18px;
+    animation:spark 3s linear infinite;
+}
+
+@keyframes spark{
+    0%{
+        transform:translateY(0) scale(0);
+        opacity:0;
+    }
+    50%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-120px) scale(1.5);
+        opacity:0;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="scene">
+
+    <!-- Flowers -->
+    <div class="flower" style="left:-90px;top:-50px;">🌹</div>
+    <div class="flower" style="left:-30px;top:-90px;animation-delay:.2s;">🌸</div>
+    <div class="flower" style="left:40px;top:-55px;animation-delay:.4s;">🌷</div>
+    <div class="flower" style="left:-65px;top:10px;animation-delay:.6s;">🌺</div>
+    <div class="flower" style="left:15px;top:5px;animation-delay:.8s;">🌼</div>
+
+    <!-- Stems -->
+    <div class="stem" style="left:-55px;transform:rotate(-15deg);"></div>
+    <div class="stem" style="left:-25px;"></div>
+    <div class="stem" style="left:10px;transform:rotate(12deg);"></div>
+
+    <!-- Ribbon -->
+    <div class="ribbon">🎀</div>
+
+</div>
+
+<script>
+function sparkle(){
+
+    const s=document.createElement("div");
+    s.className="sparkle";
+    s.innerHTML=Math.random()>0.5 ? "✨" : "⭐";
+
+    s.style.left=(window.innerWidth/2-100+Math.random()*200)+"px";
+    s.style.top=(window.innerHeight/2-50+Math.random()*150)+"px";
+
+    document.body.appendChild(s);
+
+    setTimeout(()=>s.remove(),3000);
+
+}
+
+setInterval(sparkle,180);
+</script>
+
+</body>
+</html>
